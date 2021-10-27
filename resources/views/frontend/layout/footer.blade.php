@@ -94,16 +94,16 @@
                         <div class="copyright-payment">
                             <ul class="payment-list">
                                 <li class="list">
-                                    <a href="#0"> <img src="assets/img/footer/c1.png" alt=""> </a>
+                                    <a href="#0"> <img src="{{ asset('frontend/assets/img/footer/c1.png') }}" alt=""> </a>
                                 </li>
                                 <li class="list">
-                                    <a href="#0"> <img src="assets/img/footer/c2.png" alt=""> </a>
+                                    <a href="#0"> <img src="{{ asset('frontend/assets/img/footer/c2.png') }}" alt=""> </a>
                                 </li>
                                 <li class="list">
-                                    <a href="#0"> <img src="assets/img/footer/c3.png" alt=""> </a>
+                                    <a href="#0"> <img src="{{ asset('frontend/assets/img/footer/c3.png') }}" alt=""> </a>
                                 </li>
                                 <li class="list">
-                                    <a href="#0"> <img src="assets/img/footer/c4.png" alt=""> </a>
+                                    <a href="#0"> <img src="{{ asset('frontend/assets/img/footer/c4.png') }}" alt=""> </a>
                                 </li>
                             </ul>
                         </div>

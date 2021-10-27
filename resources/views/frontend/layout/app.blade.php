@@ -46,6 +46,8 @@
     <script src="{{ asset('frontend/assets/js/jquery.nice-select.js') }}"></script>
     <!-- main js -->
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
+    <!-- custom script -->
+    <script src="{{ asset('frontend/js/script.js') }}"></script>
 
 </body>
 

@@ -1,6 +1,6 @@
 @extends('frontend.layout.app')
 
-@section('title','Booking')
+@section('title','Order')
 
 @section('content')
 
@@ -74,7 +74,7 @@
                                     <div class="overview-author overview-author-border">
                                         <div class="overview-flex-author">
                                             <div class="overview-thumb">
-                                                <img src="assets/img/service/overview1.jpg" alt="">
+                                                <img src="{{ asset('frontend/assets/img/service/overview1.jpg') }}" alt="">
                                             </div>
                                             <div class="overview-contents">
                                                 <h4 class="overview-title"> <a href="javascript:void(0)"> Lorem ipsum dolor sit amet, consectetur adipiscing about Aelit</a> </h4>
@@ -89,11 +89,11 @@
                                                 <ul class="include-list">
                                                     <li class="lists">
                                                         <div class="list-single">
-                                                            <span class="rooms"> 3 Bed Room </span>
+                                                            <span class="rooms"><span class="bed-rooms-count">1</span> Bed Room </span>
                                                         </div>
                                                         <div class="list-single">
-                                                            <span class="values"> $30 </span>
-                                                            <span class="value-input"> <input type="text" value="3"> </span>
+                                                            <span class="values bed-rooms-price"> $30 </span>
+                                                            <span class="value-input"> <input type="text" value="1" id="inc_dec_rooms"> </span>
                                                         </div>
                                                     </li>
                                                     <li class="lists"> <a class="remove" href="javascript:void(0)">Remove</a> </li>
@@ -103,11 +103,11 @@
                                                 <ul class="include-list">
                                                     <li class="lists">
                                                         <div class="list-single">
-                                                            <span class="rooms"> 2 Bed Room </span>
+                                                            <span class="rooms"><span class="bath-rooms-count">1</span> Bath Room </span>
                                                         </div>
                                                         <div class="list-single">
-                                                            <span class="values"> $20 </span>
-                                                            <span class="value-input"> <input type="text" value="2"> </span>
+                                                            <span class="values bath-rooms-price"> $20 </span>
+                                                            <span class="value-input"> <input type="text" value="1" id="inc_dec_bath_rooms"> </span>
                                                         </div>
                                                     </li>
                                                     <li class="lists"> <a class="remove" href="javascript:void(0)">Remove</a> </li>
@@ -118,66 +118,25 @@
                                     <div class="overview-single padding-top-60">
                                         <h4 class="title"> Upgrade your order with extras </h4>
                                         <div class="row">
+                                            @if(!empty($extraservices))
+                                            @foreach($extraservices as $service)
                                             <div class="col-lg-6 margin-top-30">
                                                 <div class="overview-extra">
                                                     <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check4">
-                                                        <label class="checkbox-label" for="check4"> Kitchen Cleaning </label>
+                                                        <input class="check-input" type="checkbox" id="{{ $service->id }}">
+                                                        <label class="checkbox-label" for="{{ $service->id }}"> {{ $service->title }} </label>
                                                     </div>
                                                     <div class="overview-extra-flex-content">
                                                         <div class="list-single">
-                                                            <span class="values"> $25 </span>
-                                                            <span class="value-input"> <input type="text" value="3"> </span>
+                                                            <span class="values unit-price" price="{{ $service->id }}"> ${{ $service->price }} </span>
+                                                            <span class="value-input"> <input type="text" value="1" class="extra-service" id="{{ $service->id }}_service_count"> </span>
                                                         </div>
-                                                        <span class="price-value"> $50 </span>
+                                                        <span class="price-value"> ${{ $service->price }} </span>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-6 margin-top-30">
-                                                <div class="overview-extra">
-                                                    <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check5">
-                                                        <label class="checkbox-label" for="check5"> Kitchen Cleaning </label>
-                                                    </div>
-                                                    <div class="overview-extra-flex-content">
-                                                        <div class="list-single">
-                                                            <span class="values"> $25 </span>
-                                                            <span class="value-input"> <input type="text" value="3"> </span>
-                                                        </div>
-                                                        <span class="price-value"> $50 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 margin-top-30">
-                                                <div class="overview-extra">
-                                                    <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check6">
-                                                        <label class="checkbox-label" for="check6"> Kitchen Cleaning </label>
-                                                    </div>
-                                                    <div class="overview-extra-flex-content">
-                                                        <div class="list-single">
-                                                            <span class="values"> $25 </span>
-                                                            <span class="value-input"> <input type="text" value="3"> </span>
-                                                        </div>
-                                                        <span class="price-value"> $50 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 margin-top-30">
-                                                <div class="overview-extra">
-                                                    <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check7">
-                                                        <label class="checkbox-label" for="check7"> Kitchen Cleaning </label>
-                                                    </div>
-                                                    <div class="overview-extra-flex-content">
-                                                        <div class="list-single">
-                                                            <span class="values"> $25 </span>
-                                                            <span class="value-input"> <input type="text" value="3"> </span>
-                                                        </div>
-                                                        <span class="price-value"> $50 </span>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="overview-single padding-top-60">
@@ -200,19 +159,19 @@
                                                 <ul class="summery-list">
                                                     <li class="list">
                                                         <span class="rooms"> Bed Room</span>
-                                                        <span class="room-count">3</span>
-                                                        <span class="value-count">$90</span>
+                                                        <span class="room-count bed-rooms-count">1</span>
+                                                        <span class="value-count bed-rooms-total-price">$30</span>
                                                     </li>
                                                     <li class="list">
                                                         <span class="rooms"> Bath Room</span>
-                                                        <span class="room-count">2</span>
-                                                        <span class="value-count">$60</span>
+                                                        <span class="room-count bath-rooms-count">1</span>
+                                                        <span class="value-count bath-rooms-total-price">$20</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list">
                                                     <li class="result-list">
                                                         <span class="rooms"> Pagckage Fee</span>
-                                                        <span class="value-count">$150</span>
+                                                        <span class="value-count package-fee">$150</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -220,39 +179,25 @@
                                         <div class="single-summery">
                                             <span class="summery-title"> Extra Service </span>
                                             <div class="summery-list-all">
-                                                <ul class="summery-list">
-                                                    <li class="list">
-                                                        <span class="rooms"> Kitchen</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$50</span>
-                                                    </li>
-                                                    <li class="list">
-                                                        <span class="rooms"> Fridge</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$20</span>
-                                                    </li>
-                                                    <li class="list">
-                                                        <span class="rooms"> Garden</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$60</span>
-                                                    </li>
+                                                <ul class="summery-list append-extra-service" id="append-extra-service">
+
                                                 </ul>
                                                 <ul class="summery-result-list result-border padding-bottom-20">
                                                     <li class="result-list">
                                                         <span class="rooms"> Subtotal</span>
-                                                        <span class="value-count">$280</span>
+                                                        <span class="value-count sub-total">$00</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list result-border padding-bottom-20">
                                                     <li class="result-list">
                                                         <span class="rooms"> Tax(+)15%</span>
-                                                        <span class="value-count">$42</span>
+                                                        <span class="value-count vat-tax">$42</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list">
                                                     <li class="result-list">
                                                         <span class="rooms"> <strong>Total</strong></span>
-                                                        <span class="value-count">$280</span>
+                                                        <span class="value-count final-total">$280</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -358,7 +303,7 @@
                             <div class="overview-author overview-author-border">
                                 <div class="overview-flex-author">
                                     <div class="overview-thumb confirm-thumb">
-                                        <img src="assets/img/service/overview1.jpg" alt="">
+                                        <img src="{{ asset('frontend/assets/img/service/overview1.jpg') }}" alt="">
                                     </div>
                                     <div class="overview-contents">
                                         <h2 class="overview-title confirm-title"> <a href="javascript:void(0)">Lorem ipsum dolor sit amet, consectetur adipiscing about Aelit</a> </h2>
@@ -503,7 +448,7 @@
                                                 <div class="single-checkbox">
                                                     <div class="checkbox-inlines">
                                                         <input class="check-input" type="checkbox" id="check2">
-                                                        <label class="checkbox-label" for="check2"> <img src="assets/img/service/payment.png" alt=""> </label>
+                                                        <label class="checkbox-label" for="check2"> <img src="{{ asset('frontend/assets/img/service/payment.png') }}" alt=""> </label>
                                                     </div>
                                                 </div>
                                             </div>
