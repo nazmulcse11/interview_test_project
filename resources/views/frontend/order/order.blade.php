@@ -223,10 +223,10 @@
                             <div class="single-date-overview margin-top-30">
                                 <h4 class="date-time-title"> Available schedule on <span class="available-schedule-date"></span> </h4>
                                 <ul class="date-time-list margin-top-20">
-                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 10.00AM-11.00AM </a> </li>
+                                    <li class="list active"> <a href="javascript:void(0)" class="available-schedule"> 10.00AM-11.00AM </a> </li>
                                     <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 12.00AM-01.00PM </a> </li>
                                     <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 04.00AM-05.00AM </a> </li>
-                                    <li class="list active"> <a href="javascript:void(0)" class="available-schedule"> 06.00AM-07.00AM </a> </li>
+                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 06.00AM-07.00AM </a> </li>
                                 </ul>
                             </div>
                             <div class="btn-wrapper margin-top-30">
@@ -242,56 +242,56 @@
                             <div class="single-info-overview margin-top-30">
                                 <div class="single-info-input">
                                     <label class="info-title"> Your Name* </label>
-                                    <input class="form--control" type="text" name="name" placeholder="Type Your Name">
+                                    <input class="form--control" type="text" name="name" id="name" placeholder="Type Your Name">
                                 </div>
                                 <div class="single-info-input">
                                     <label class="info-title"> Your Email* </label>
-                                    <input class="form--control" type="email" name="email" placeholder="Type Your Email">
+                                    <input class="form--control" type="email" name="email" id="email" placeholder="Type Your Email">
                                 </div>
                             </div>
                             <div class="single-info-overview margin-top-30">
                                 <div class="single-info-input">
                                     <label class="info-title"> Phone Number* </label>
-                                    <input class="form--control" type="tel" placeholder="Type Your Number">
+                                    <input class="form--control" type="tel" name="phone" id="phone" placeholder="Type Your Number">
                                 </div>
                                 <div class="single-info-input">
                                     <label class="info-title"> Your City* </label>
-                                    <select>
-                                        <option value="1">New York</option>
-                                        <option value="2">London</option>
-                                        <option value="2">Eden Garden</option>
-                                        <option value="2">Paris</option>
-                                        <option value="2">Barcelona</option>
+                                    <select name="city" id="city">
+                                        <option value="New York">New York</option>
+                                        <option value="London">London</option>
+                                        <option value="Dhaka">Dhaka</option>
+                                        <option value="Paris">Paris</option>
+                                        <option value="Barcelona">Barcelona</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="single-info-overview margin-top-30">
                                 <div class="single-info-input">
                                     <label class="info-title"> Your Area* </label>
-                                    <input class="form--control" type="text" placeholder="Type Your Area">
+                                    <input class="form--control" type="text" name="area" id="area" placeholder="Type Your Area">
                                 </div>
                                 <div class="single-info-input">
                                     <label class="info-title"> Post Code* </label>
-                                    <input class="form--control" type="tel" placeholder="Type Post Code">
+                                    <input class="form--control" type="tel" name="post_code" id="post_code" placeholder="Type Post Code">
                                 </div>
                             </div>
                             <div class="single-info-overview margin-top-30">
                                 <div class="single-info-input">
                                     <label class="info-title"> Your Address* </label>
-                                    <input class="form--control" type="text" placeholder="Type Your Address">
+                                    <input class="form--control" type="text" name="address" id="address" placeholder="Type Your Address" required>
                                 </div>
                             </div>
                             <div class="single-info-overview margin-top-30">
                                 <div class="single-info-input">
                                     <label class="info-title"> Order Note* </label>
-                                    <textarea class="form--control textarea--form" name="message" placeholder="Type Order Note"></textarea>
+                                    <textarea class="form--control textarea--form" name="order_note" id="order_note" placeholder="Type Order Note"></textarea>
                                 </div>
                             </div>
                             <div class="btn-wrapper margin-top-35">
-                                <a href="javascript:void(0)" class="cmn-btn btn-bg-1">Continue</a>
+                                <a href="javascript:void(0)" class="cmn-btn btn-bg-1 booking-info-continue">Continue</a>
                             </div>
                         </div>
-                        <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button booking-info-continue" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <!-- Confirmation -->
                     <fieldset class="padding-top-50 padding-bottom-100">
@@ -319,8 +319,8 @@
                                         </div>
                                         <div class="single-confirm margin-top-30">
                                             <h3 class="titles"> Date & Time </h3>
-                                            <span class="details"> 06 Sep 2021 </span>
-                                            <span class="details"> 6:00PM-7:00PM </span>
+                                            <span class="details" id="available_date"> </span>
+                                            <span class="details" id="available_schedule"> </span>
                                         </div>
                                     </div>
                                     <div class="booking-info padding-top-60">
@@ -329,37 +329,35 @@
                                             <ul class="booking-list">
                                                 <li class="lists">
                                                     <span class="list-span"> Name: </span>
-                                                    <span class="list-strong"> Jhon Dhoe </span>
+                                                    <span class="list-strong" id="get_name"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Email: </span>
-                                                    <span class="list-strong"> Customer@mail.com </span>
+                                                    <span class="list-strong" id="get_email"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Phone: </span>
-                                                    <span class="list-strong"> 011-2234567890 </span>
+                                                    <span class="list-strong" id="get_phone"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> City: </span>
-                                                    <span class="list-strong"> New york </span>
+                                                    <span class="list-strong" id="get_city"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Area: </span>
-                                                    <span class="list-strong"> New york </span>
+                                                    <span class="list-strong" id="get_area"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Post Code: </span>
-                                                    <span class="list-strong"> 1122 </span>
+                                                    <span class="list-strong" id="get_post_code"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Address: </span>
-                                                    <span class="list-strong"> 2608 Ritter Avenue Livonia, MI 48150 </span>
+                                                    <span class="list-strong" id="get_address"> </span>
                                                 </li>
                                                 <li class="lists">
                                                     <span class="list-span"> Order Note: </span>
-                                                    <span class="list-strong"> it is a long established fact that a reader will be distra 
-                                                        by the readable content of a page when looking at its 
-                                                        layout. The point of using Lorem Ipsum is that. </span>
+                                                    <span class="list-strong" id="get_order_note"> </span>
                                                 </li>
                                             </ul>
                                         </div>

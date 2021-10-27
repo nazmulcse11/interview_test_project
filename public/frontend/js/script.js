@@ -156,11 +156,42 @@ $(document).ready(function(){
     $('.date-overview .show-date .get-date').on('click',function(){
         var available_date = $(this).text();
         $('.date-overview .single-date-overview .available-schedule-date').text(available_date);
-    })
-     //get available schedule
-     $('.date-overview .single-date-overview .available-schedule').on('click',function(){
-        var available_schedule = $(this).text();
-        // console.log(available_schedule);
+            //get available schedule
+            $('.date-overview .single-date-overview .available-schedule').on('click',function(){
+                var available_schedule = $(this).text();
+                // console.log(available_schedule);
+                overviewConfirmation(available_date,available_schedule);
+            })
     })
 
+    //overview confirmation
+    function overviewConfirmation(available_date,available_schedule){
+        $('.booking-info-continue').on('click',function(){
+            var name=$('#name').val();
+            var email=$('#email').val();
+            var phone=$('#phone').val();
+            var city=$('#city').val();
+            var area=$('#area').val();
+            var post_code=$('#post_code').val();
+            var address=$('#address').val();
+            var order_note=$('#order_note').val();
+            // console.log(name+' '+email+' '+phone+' '+city+' '+area+' '+post_code+' '+address+' '+order_note);
+            // if(name=='' || email=='' || phone=='' || city=='' || area=='' || post_code=='' || address=='' || order_note==''){
+            //     alert('Please Fill All Fields');
+            // }
+
+            $('.confirm-overview-left #available_date').text(available_date);
+            $('.confirm-overview-left #available_schedule').text(available_schedule);
+
+            $('.booking-details #get_name').text(name);
+            $('.booking-details #get_email').text(email);
+            $('.booking-details #get_phone').text(phone);
+            $('.booking-details #get_city').text(city);
+            $('.booking-details #get_area').text(area);
+            $('.booking-details #get_post_code').text(post_code);
+            $('.booking-details #get_address').text(address);
+            $('.booking-details #get_order_note').text(order_note);
+        })
+    }
+    overviewConfirmation(available_date,available_schedule);
 });
