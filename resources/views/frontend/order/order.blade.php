@@ -215,22 +215,18 @@
                     <fieldset class="padding-top-50 padding-bottom-100">
                         <div class="date-overview">
                             <div class="single-date-overview margin-top-30">
-                                <h4 class="date-time-title"> Available on December 20201 </h4>
-                                <ul class="date-time-list margin-top-20">
-                                    <li class="list"> <a href="javascript:void(0)"> 05 dec,2021 - Sun </a> </li>
-                                    <li class="list active"> <a href="javascript:void(0)"> 06 dec,2021 - Sun </a> </li>
-                                    <li class="list"> <a href="javascript:void(0)"> 07 dec,2021 - Sun </a> </li>
-                                    <li class="list"> <a href="javascript:void(0)"> 08 dec,2021 - Sun </a> </li>
-                                    <li class="list"> <a href="javascript:void(0)"> 09 dec,2021 - Sun </a> </li>
+                                <h4 class="date-time-title"> Available on <span class="month-year"></span></h4>
+                                <ul class="date-time-list margin-top-20 show-date">
+                                    
                                 </ul>
                             </div>
                             <div class="single-date-overview margin-top-30">
-                                <h4 class="date-time-title"> Available schedule on 06 September, 2021 </h4>
+                                <h4 class="date-time-title"> Available schedule on <span class="available-schedule-date"></span> </h4>
                                 <ul class="date-time-list margin-top-20">
-                                    <li class="list"> <a href="javascript:void(0)"> 10.00AM-11.00AM </a> </li>
-                                    <li class="list"> <a href="javascript:void(0)"> 12.00AM-01.00PM </a> </li>
-                                    <li class="list"> <a href="javascript:void(0)"> 04.00AM-05.00AM </a> </li>
-                                    <li class="list active"> <a href="javascript:void(0)"> 06.00AM-07.00AM </a> </li>
+                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 10.00AM-11.00AM </a> </li>
+                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 12.00AM-01.00PM </a> </li>
+                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 04.00AM-05.00AM </a> </li>
+                                    <li class="list active"> <a href="javascript:void(0)" class="available-schedule"> 06.00AM-07.00AM </a> </li>
                                 </ul>
                             </div>
                             <div class="btn-wrapper margin-top-30">

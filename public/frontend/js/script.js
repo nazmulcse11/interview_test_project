@@ -23,7 +23,6 @@ $(document).ready(function(){
 
     //add remove extra service
     var sub_total = 0;
-    // var package_fee = parseInt($('.package-fee').text().replace('$', ''));
     $('.overview-extra .check-input').click(function(){
         var service_id = $(this).attr('id');
         var service_name = $('label[for=' + service_id + ']').text();
@@ -91,7 +90,6 @@ $(document).ready(function(){
             var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
             var total_price = (extra_service_unit_price*service_count);
             sub_total = (sub_total-total_price)*1;
-            // sub_total = (sub_total)-(prev*extra_service_unit_price);
             $('.single-summery .sub-total').text('$'+sub_total);
             $('.append-extra-service li[service-id=' + service_id + ']').remove();   
             packageFee(sub_total); 
@@ -121,4 +119,48 @@ $(document).ready(function(){
     }
     packageFee(sub_total);
 
-})
+    //Date and time
+    function GetDates(startDate, daysToAdd) {
+        var aryDates = [];
+        for (var i = 0; i <= daysToAdd; i++) {
+            var currentDate = new Date();
+            currentDate.setDate(startDate.getDate() + i);
+            aryDates.push(DayAsString(currentDate.getDay()) + ", " + currentDate.getDate() + " " + MonthAsString(currentDate.getMonth()) + " " + currentDate.getFullYear());
+        }
+        return aryDates;
+    }
+    
+    function MonthAsString(monthIndex) {
+        var d = new Date();
+        var month = new Array();
+        month[0] = "January";month[1] = "February";month[2] = "March";month[3] = "April";month[4] = "May";month[5] = "June";month[6] = "July";month[7] = "August";month[8] = "September";month[9] = "October";month[10] = "November";month[11] = "December";
+        return month[monthIndex];
+    }
+    
+    function DayAsString(dayIndex) {
+        var weekdays = new Array(7);
+        weekdays[0] = "Sunday";weekdays[1] = "Monday";weekdays[2] = "Tuesday";weekdays[3] = "Wednesday";weekdays[4] = "Thursday";weekdays[5] = "Friday";weekdays[6] = "Saturday";
+        return weekdays[dayIndex];
+    }
+
+    var startDate = new Date();
+    var aryDates = GetDates(startDate, 7);
+    //show next seven days
+    for(var i=0; i<7; i++){
+        $('.date-overview .show-date').append('<li class="list"> <a href="javascript:void(0)" class="get-date">'+aryDates[i]+'</a> </li>');
+    }
+    //show available month year
+    $('.date-overview .month-year').text(startDate.toLocaleString("default", { month: "long" })+', '+startDate.getFullYear());
+    
+    //get available date
+    $('.date-overview .show-date .get-date').on('click',function(){
+        var available_date = $(this).text();
+        $('.date-overview .single-date-overview .available-schedule-date').text(available_date);
+    })
+     //get available schedule
+     $('.date-overview .single-date-overview .available-schedule').on('click',function(){
+        var available_schedule = $(this).text();
+        // console.log(available_schedule);
+    })
+
+});
