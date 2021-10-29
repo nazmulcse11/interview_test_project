@@ -33,24 +33,19 @@
                         <div class="overview-list-all">
                             <div class="overview-location">
                                 <div class="single-location active margin-top-30">
-                                    <span class="location"> New York, </span>
-                                    <span class="location"> New York </span>
+                                    <span class="location my-location"> New York <br>USA </span>
                                 </div>
                                 <div class="single-location margin-top-30">
-                                    <span class="location"> Los Angeles, </span>
-                                    <span class="location"> California </span>
+                                    <span class="location"> Dhaka <br>Bangladesh</span>
                                 </div>
                                 <div class="single-location margin-top-30">
-                                    <span class="location"> Chicago, </span>
-                                    <span class="location"> New York </span>
+                                    <span class="location"> Chicago <br>New York </span>
                                 </div>
                                 <div class="single-location margin-top-30">
-                                    <span class="location"> Houston, </span>
-                                    <span class="location"> Texas </span>
+                                    <span class="location"> Paris <br>France </span>
                                 </div>
                                 <div class="single-location margin-top-30">
-                                    <span class="location"> Phoenix, </span>
-                                    <span class="location"> Arizona </span>
+                                    <span class="location"> Phoenix <br>Arizona </span>
                                 </div>
                             </div>
                         </div>
@@ -58,8 +53,8 @@
                         <div class="contact-map-area padding-top-100">
                             <div class="container">
                                 <div class="contact-map">
-                                    <span class="select-location"> Select Current Location </span>
-                                    <iframe src="https://maps.google.com/maps?q=23.8283,90.4115&hl=es;z=14&amp;output=embed"></iframe>
+                                    <span class="select-location btn" id="find_btn"> Select Current Location (Find Me)</span>
+                                    <div style="height: 400px;width: 100%;" id="map"></div>
                                 </div>
                             </div>
                         </div>
@@ -223,7 +218,7 @@
                             <div class="single-date-overview margin-top-30">
                                 <h4 class="date-time-title"> Available schedule on <span class="available-schedule-date"></span> </h4>
                                 <ul class="date-time-list margin-top-20">
-                                    <li class="list active"> <a href="javascript:void(0)" class="available-schedule"> 10.00AM-11.00AM </a> </li>
+                                    <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 10.00AM-11.00AM </a> </li>
                                     <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 12.00AM-01.00PM </a> </li>
                                     <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 04.00AM-05.00AM </a> </li>
                                     <li class="list"> <a href="javascript:void(0)" class="available-schedule"> 06.00AM-07.00AM </a> </li>
@@ -314,13 +309,12 @@
                                     <div class="single-confirm-overview">
                                         <div class="single-confirm margin-top-30">
                                             <h3 class="titles"> Location </h3>
-                                            <span class="details"> Los Angeles, </span>
-                                            <span class="details"> California </span>
+                                            <span class="details my-location"></span>
                                         </div>
                                         <div class="single-confirm margin-top-30">
                                             <h3 class="titles"> Date & Time </h3>
-                                            <span class="details" id="available_date"> </span>
-                                            <span class="details" id="available_schedule"> </span>
+                                            <span class="details" id="available_date"></span>
+                                            <span class="details" id="available_schedule"></span>
                                         </div>
                                     </div>
                                     <div class="booking-info padding-top-60">
@@ -364,6 +358,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 margin-top-60">
                                 <div class="service-overview-summery">
                                     <h4 class="title"> Booking Summery </h4>
@@ -374,19 +369,19 @@
                                                 <ul class="summery-list">
                                                     <li class="list">
                                                         <span class="rooms"> Bed Room</span>
-                                                        <span class="room-count">3</span>
-                                                        <span class="value-count">$90</span>
+                                                        <span class="room-count bed-rooms-count">1</span>
+                                                        <span class="value-count bed-rooms-total-price">$30</span>
                                                     </li>
                                                     <li class="list">
                                                         <span class="rooms"> Bath Room</span>
-                                                        <span class="room-count">2</span>
-                                                        <span class="value-count">$60</span>
+                                                        <span class="room-count bath-rooms-count">1</span>
+                                                        <span class="value-count bath-rooms-total-price">$20</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list">
                                                     <li class="result-list">
-                                                        <span class="rooms"> Appoinment Fee</span>
-                                                        <span class="value-count">$150</span>
+                                                        <span class="rooms"> Pagckage Fee</span>
+                                                        <span class="value-count package-fee"></span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -394,39 +389,25 @@
                                         <div class="single-summery">
                                             <span class="summery-title"> Extra Service </span>
                                             <div class="summery-list-all">
-                                                <ul class="summery-list">
-                                                    <li class="list">
-                                                        <span class="rooms"> Kitchen</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$50</span>
-                                                    </li>
-                                                    <li class="list">
-                                                        <span class="rooms"> Fridge</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$20</span>
-                                                    </li>
-                                                    <li class="list">
-                                                        <span class="rooms"> Garden</span>
-                                                        <span class="room-count">1</span>
-                                                        <span class="value-count">$60</span>
-                                                    </li>
+                                                <ul class="summery-list append-extra-services">
+
                                                 </ul>
                                                 <ul class="summery-result-list result-border padding-bottom-20">
                                                     <li class="result-list">
                                                         <span class="rooms"> Subtotal</span>
-                                                        <span class="value-count">$280</span>
+                                                        <span class="value-count sub-total">$00</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list result-border padding-bottom-20">
                                                     <li class="result-list">
                                                         <span class="rooms"> Tax(+)15%</span>
-                                                        <span class="value-count">$42</span>
+                                                        <span class="value-count vat-tax">$00</span>
                                                     </li>
                                                 </ul>
                                                 <ul class="summery-result-list">
                                                     <li class="result-list">
                                                         <span class="rooms"> <strong>Total</strong></span>
-                                                        <span class="value-count">$280</span>
+                                                        <span class="value-count final-total">$00</span>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -458,6 +439,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <input type="button" name="submit" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>

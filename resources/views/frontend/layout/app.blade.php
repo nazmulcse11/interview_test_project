@@ -48,6 +48,8 @@
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <!-- custom script -->
     <script src="{{ asset('frontend/js/script.js') }}"></script>
+    <!-- maps  -->
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD__ZDRp-xfFYUAOIN_oDPmp9-pV0S6Ea4&callback=initMap&libraries=&v=weekly"async></script>
 
 </body>
 

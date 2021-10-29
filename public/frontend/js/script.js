@@ -1,100 +1,151 @@
 $(document).ready(function(){
-    //increment decrement bed rooms
+
+// Location
+var map;
+function initMap() {
+var mapCenter = new google.maps.LatLng(47.6145, -122.3418); //Google map Coordinates
+map = new google.maps.Map($("#map")[0], {
+    center: mapCenter,
+    zoom: 8
+    });
+    // The marker, positioned at Uluru
+    const marker = new google.maps.Marker({
+    position: mapCenter,
+    map: map,
+    });
+}
+initMap();
+
+$("#find_btn").click(function (){
+if ("geolocation" in navigator){
+    navigator.geolocation.getCurrentPosition(function(position){ 
+        infoWindow = new google.maps.InfoWindow({map: map});
+        var pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+        infoWindow.setPosition(pos);
+        infoWindow.setContent("Found your location <br />Lat : "+position.coords.latitude+" </br>Lang :"+ position.coords.longitude);
+        $('.my-location').html('Lat :'+position.coords.latitude+'</br>Lang :'+ position.coords.longitude);
+        map.panTo(pos);
+        });
+    }else{
+    console.log("Browser doesn't support geolocation!");
+}
+});
+
+
+
+//increment decrement bed rooms
+function incDecBedRooms(){
     $('#inc_dec_rooms').keyup(function(){
         var bed_rooms_count = $('#inc_dec_rooms').val();
-        var bed_rooms_unit_price = $('.bed-rooms-price').text().replace('$', '');
-        var bed_rooms_total_price = (bed_rooms_count * bed_rooms_unit_price);
-        $('.bed-rooms-count').text(bed_rooms_count);
-        $('.bed-rooms-total-price').text('$'+bed_rooms_total_price);
-        packageFee(sub_total);
-        // console.log(bed_rooms_total_price);
+        if(isNaN(bed_rooms_count)){
+            alert('Please Enter Numbers Only');
+        }else{
+            var bed_rooms_unit_price = $('.bed-rooms-price').text().replace('$', '');
+            var bed_rooms_total_price = (bed_rooms_count * bed_rooms_unit_price);
+            $('.bed-rooms-count').text(bed_rooms_count);
+            $('.bed-rooms-total-price').text('$'+bed_rooms_total_price);
+            packageFee(sub_total);
+            // console.log(bed_rooms_total_price);
+        } 
     })
+}
+incDecBedRooms();
+
     
-     //increment decrement bath rooms
+//increment decrement bath rooms
+function incDecBathRooms(){
     $('#inc_dec_bath_rooms').keyup(function(){
         var bath_rooms_count = $('#inc_dec_bath_rooms').val();
+        if(isNaN(bath_rooms_count)){
+            alert('Please Enter Numbers Only');
+        }else{
         var bath_rooms_unit_price = $('.bath-rooms-price').text().replace('$', '');
         var bath_rooms_total_price = (bath_rooms_count * bath_rooms_unit_price);
         $('.bath-rooms-count').text(bath_rooms_count);
         $('.bath-rooms-total-price').text('$'+bath_rooms_total_price);
         packageFee(sub_total);
         // console.log(bath_rooms_total_price);
-    })
-
-    //add remove extra service
-    var sub_total = 0;
-    $('.overview-extra .check-input').click(function(){
-        var service_id = $(this).attr('id');
-        var service_name = $('label[for=' + service_id + ']').text();
-        var extra_service_unit_price = $('span[price=' + service_id + ']').text().replace('$', '');
-
-        //add extra service if checked
-        if($(this).is(":checked")) {
-        $('.append-extra-service').append('<li class="list" service-id="'+service_id+'"><span class="rooms">' +service_name+'</span>' + '<span class="room-count service-count">'+1+'</span>'+ '<span class="value-count total-price">$'+extra_service_unit_price+'</span>' +'</li>');
-                var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
-                var total_price = (extra_service_unit_price*service_count);
-                sub_total = (sub_total+total_price);
-                $('.single-summery .sub-total').text('$'+sub_total);
-                packageFee(sub_total);
-                
-                // increment decrement extra service
-                $(document).on('focusin','.extra-service', function(){
-                    //get old value
-                    $(this).val();
-                    $(this).data('val', $(this).val());
-                }).on('change','.extra-service', function(){
-                    var prev = $(this).data('val');
-                    // var current = $(this).val();
-                    // console.log("Prev value " + prev);
-                    // console.log("New value " + current);
-
-                    var get_service_id = $(this).attr('id');
-                    var service_count = $('#'+get_service_id).val();
-                    var total_price = (extra_service_unit_price*service_count);
-                    var is_match = service_id+'_service_count';
-                
-                    if(is_match==get_service_id){
-                        $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
-                        $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
-                        var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
-                        sub_total=(sub_total+total)-(prev*extra_service_unit_price);
-                        $('.single-summery .sub-total').text('$'+sub_total);
-                        packageFee(sub_total);
-                    }
-                });
-                
-
-            //increment decrement extra service
-            // $('.extra-service').keyup(function(){
-                // var get_service_id = $(this).attr('id');
-                // var service_count = $('#'+get_service_id).val();
-                // var total_price = (extra_service_unit_price*service_count);
-
-                // //get old value
-                // var saving_value = $(this).val();
-                // var get_saving_value = $(this).data('val', saving_value);
-                // console.log('saving old value= '+get_saving_value);
-
-                // var abc = service_id+'_service_count';
-            
-                // if(abc==get_service_id){
-                //     $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
-                //     $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
-                //     var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
-                //     sub_total=(sub_total+total);
-                //     $('.single-summery .sub-total').text('$'+sub_total);
-                // }
-                // console.log(sub_total);
-            // })
-        }else{
-            var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
-            var total_price = (extra_service_unit_price*service_count);
-            sub_total = (sub_total-total_price)*1;
-            $('.single-summery .sub-total').text('$'+sub_total);
-            $('.append-extra-service li[service-id=' + service_id + ']').remove();   
-            packageFee(sub_total); 
         }
     })
+}
+incDecBathRooms();
+
+//add remove extra service
+var sub_total = 0;
+$('.overview-extra .check-input').click(function(){
+    var service_id = $(this).attr('id');
+    var service_name = $('label[for=' + service_id + ']').text();
+    var extra_service_unit_price = $('span[price=' + service_id + ']').text().replace('$', '');
+    
+    //add extra service if checked
+    if($(this).is(":checked")) {
+    $('.append-extra-service').append('<li class="list" service-id="'+service_id+'"><span class="rooms">' +service_name+'</span>' + '<span class="room-count service-count">'+1+'</span>'+ '<span class="value-count total-price">$'+extra_service_unit_price+'</span>' +'</li>');
+        var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
+        var total_price = (extra_service_unit_price*service_count);
+        sub_total = (sub_total+total_price);
+        $('.single-summery .sub-total').text('$'+sub_total);
+        packageFee(sub_total);
+        
+        // increment decrement extra service
+        $(document).on('focusin','.extra-service', function(){
+            //get old value
+            $(this).val();
+            $(this).data('val', $(this).val()).replace(/\D/g,'');
+        }).on('change','.extra-service', function(){
+            var prev = $(this).data('val').replace(/\D/g,'');
+            var current = $(this).val();
+            // console.log( prev+' '+current);
+            if(isNaN(current||prev)){
+                alert('Please Enter Numbers Only');
+            }else{
+                var get_service_id = $(this).attr('id');
+                var service_count = $('#'+get_service_id).val();
+                var total_price = (extra_service_unit_price*service_count);
+                var is_match = service_id+'_service_count';
+            
+                if(is_match==get_service_id){
+                    $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
+                    $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
+                    var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
+                    sub_total=(sub_total+total)-(prev*extra_service_unit_price);
+                    $('.single-summery .sub-total').text('$'+sub_total);
+                    packageFee(sub_total);
+                }
+            }
+        });
+            
+        //increment decrement extra service
+        // $('.extra-service').keyup(function(){
+            // var get_service_id = $(this).attr('id');
+            // var service_count = $('#'+get_service_id).val();
+            // var total_price = (extra_service_unit_price*service_count);
+
+            // //get old value
+            // var saving_value = $(this).val();
+            // var get_saving_value = $(this).data('val', saving_value);
+            // console.log('saving old value= '+get_saving_value);
+
+            // var abc = service_id+'_service_count';
+        
+            // if(abc==get_service_id){
+            //     $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
+            //     $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
+            //     var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
+            //     sub_total=(sub_total+total);
+            //     $('.single-summery .sub-total').text('$'+sub_total);
+            // }
+            // console.log(sub_total);
+        // })
+    }else{
+        var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
+        var total_price = (extra_service_unit_price*service_count);
+        sub_total = (sub_total-total_price)*1;
+        $('.single-summery .sub-total').text('$'+sub_total);
+        $('.append-extra-service li[service-id=' + service_id + ']').remove();   
+        packageFee(sub_total); 
+    }
+})
+   
 
     //package fee calculate
     function packageFee(extra_service_fee){
@@ -151,17 +202,19 @@ $(document).ready(function(){
     }
     //show available month year
     $('.date-overview .month-year').text(startDate.toLocaleString("default", { month: "long" })+', '+startDate.getFullYear());
-    
+
     //get available date
+    var available_date='';
     $('.date-overview .show-date .get-date').on('click',function(){
-        var available_date = $(this).text();
+         available_date = $(this).text();
+        console.log('avil-date '+available_date);
         $('.date-overview .single-date-overview .available-schedule-date').text(available_date);
             //get available schedule
             $('.date-overview .single-date-overview .available-schedule').on('click',function(){
                 var available_schedule = $(this).text();
                 // console.log(available_schedule);
                 overviewConfirmation(available_date,available_schedule);
-            })
+         })
     })
 
     //overview confirmation
