@@ -8,8 +8,15 @@ use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
+    //order page
     public function order(){
         $extraservices = Extraservice::all();
         return view('frontend.order.order',compact('extraservices'));
+    }
+    //add order
+    public function addOrder(Request $request){
+        if($request->isMethod('post')){
+          return 'ok';
+        }
     }
 }

@@ -9,7 +9,8 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <form id="msform" class="msform">
+                <form id="msform" class="msform ms-order-form" method="post" name="msOrderForm" novalidate>
+                    @csrf
 
                     <ul class="overview-list step-list">
                         <li class="list active" id="account">
@@ -309,7 +310,7 @@
                                     <div class="single-confirm-overview">
                                         <div class="single-confirm margin-top-30">
                                             <h3 class="titles"> Location </h3>
-                                            <span class="details my-location"></span>
+                                            <span class="details my-location" id="my_location">New York <br>USA</span>
                                         </div>
                                         <div class="single-confirm margin-top-30">
                                             <h3 class="titles"> Date & Time </h3>
@@ -360,7 +361,7 @@
                             </div>
 
                             <div class="col-lg-4 margin-top-60">
-                                <div class="service-overview-summery">
+                                <div class="service-overview-summery confirm-service-overview-summery ">
                                     <h4 class="title"> Booking Summery </h4>
                                     <div class="overview-summery-contents">
                                         <div class="single-summery">
@@ -389,7 +390,7 @@
                                         <div class="single-summery">
                                             <span class="summery-title"> Extra Service </span>
                                             <div class="summery-list-all">
-                                                <ul class="summery-list append-extra-services">
+                                                <ul class="summery-list append-extra-service2">
 
                                                 </ul>
                                                 <ul class="summery-result-list result-border padding-bottom-20">
@@ -416,32 +417,33 @@
                                             <div class="confirm-payment payment-border">
                                                 <div class="single-checkbox">
                                                     <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check1">
+                                                        <input class="check-input cash" type="checkbox" id="check1">
                                                         <label class="checkbox-label" for="check1"> Cash Payment </label>
                                                     </div>
                                                 </div>
                                                 <div class="single-checkbox">
                                                     <div class="checkbox-inlines">
-                                                        <input class="check-input" type="checkbox" id="check2">
+                                                        <input class="check-input paypal" type="checkbox" id="check2">
                                                         <label class="checkbox-label" for="check2"> <img src="{{ asset('frontend/assets/img/service/payment.png') }}" alt=""> </label>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="checkbox-inlines bottom-checkbox">
+                                            <div class="checkbox-inlines bottom-checkbox terms-and-conditions">
                                                 <input class="check-input" type="checkbox" id="check3">
                                                 <label class="checkbox-label" for="check3"> I have read and agree to the website <a href="javascript:void(0)"> terms and 
                                                     conditions * </a> </label>
                                             </div>
                                         </div>
                                         <div class="btn-wrapper">
-                                            <a href="javascript:void(0)" class="cmn-btn btn-appoinment btn-bg-1"> Pay & Confirm Your Order </a>
+                                            <a class="cmn-btn btn-appoinment btn-bg-1 pay-and-confirm-order"> Pay & Confirm Your Order </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <input type="button" name="submit" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="submit" name="submit" class="action-button" value="Submit" />
+                        {{-- <input type="button" name="submit" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> --}}
                     </fieldset>
                     <!-- Successful Complete -->
                     <fieldset class="padding-top-80 padding-bottom-100">

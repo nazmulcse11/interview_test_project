@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- favicon -->
@@ -48,6 +49,13 @@
     <script src="{{ asset('frontend/assets/js/main.js') }}"></script>
     <!-- custom script -->
     <script src="{{ asset('frontend/js/script.js') }}"></script>
+    <script>
+        $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              }
+          });
+      </script>
     <!-- maps  -->
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD__ZDRp-xfFYUAOIN_oDPmp9-pV0S6Ea4&callback=initMap&libraries=&v=weekly"async></script>
 

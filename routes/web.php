@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 //frontend route
 Route::get('/',[App\Http\Controllers\Frontend\OrderController::class,'order']);
+Route::post('/add-order',[App\Http\Controllers\Frontend\OrderController::class,'addOrder']);
 
 
 //backend route

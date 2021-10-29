@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-// Location
+// Get Current Locatio---------------------------------------------------------
 var map;
 function initMap() {
 var mapCenter = new google.maps.LatLng(47.6145, -122.3418); //Google map Coordinates
@@ -33,7 +33,7 @@ if ("geolocation" in navigator){
 
 
 
-//increment decrement bed rooms
+//increment decrement bed rooms---------------------------------------------------------
 function incDecBedRooms(){
     $('#inc_dec_rooms').keyup(function(){
         var bed_rooms_count = $('#inc_dec_rooms').val();
@@ -70,7 +70,7 @@ function incDecBathRooms(){
 }
 incDecBathRooms();
 
-//add remove extra service
+//add remove extra service---------------------------------------------------------
 var sub_total = 0;
 $('.overview-extra .check-input').click(function(){
     var service_id = $(this).attr('id');
@@ -80,6 +80,7 @@ $('.overview-extra .check-input').click(function(){
     //add extra service if checked
     if($(this).is(":checked")) {
     $('.append-extra-service').append('<li class="list" service-id="'+service_id+'"><span class="rooms">' +service_name+'</span>' + '<span class="room-count service-count">'+1+'</span>'+ '<span class="value-count total-price">$'+extra_service_unit_price+'</span>' +'</li>');
+    $('.append-extra-service2').append('<li class="list" service-id2="'+service_id+'"><span class="rooms">' +service_name+'</span>' + '<span class="room-count service-count">'+1+'</span>'+ '<span class="value-count total-price">$'+extra_service_unit_price+'</span>' +'</li>');
         var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
         var total_price = (extra_service_unit_price*service_count);
         sub_total = (sub_total+total_price);
@@ -116,32 +117,28 @@ $('.overview-extra .check-input').click(function(){
             
         //increment decrement extra service
         // $('.extra-service').keyup(function(){
-            // var get_service_id = $(this).attr('id');
-            // var service_count = $('#'+get_service_id).val();
-            // var total_price = (extra_service_unit_price*service_count);
+        //     var get_service_id = $(this).attr('id');
+        //     var service_count = $('#'+get_service_id).val();
+        //     var total_price = (extra_service_unit_price*service_count);
 
-            // //get old value
-            // var saving_value = $(this).val();
-            // var get_saving_value = $(this).data('val', saving_value);
-            // console.log('saving old value= '+get_saving_value);
-
-            // var abc = service_id+'_service_count';
-        
-            // if(abc==get_service_id){
-            //     $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
-            //     $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
-            //     var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
-            //     sub_total=(sub_total+total);
-            //     $('.single-summery .sub-total').text('$'+sub_total);
-            // }
-            // console.log(sub_total);
+        //     var is_match = service_id+'_service_count';
+        //     if(is_match==get_service_id){
+        //         $('.append-extra-service li[service-id=' + service_id + '] .service-count').text(service_count);
+        //         $('.append-extra-service li[service-id=' + service_id + '] .total-price').text('$'+total_price);
+        //         var total= parseInt($('.append-extra-service li[service-id=' + service_id + '] .total-price').text().replace('$', ''));
+        //         sub_total=(sub_total+total);
+        //         $('.single-summery .sub-total').text('$'+sub_total);
+        //     }
+        //     console.log(sub_total);
         // })
     }else{
+        // remove extra service if not checked
         var service_count = $('.append-extra-service li[service-id=' + service_id + '] .service-count').text();
         var total_price = (extra_service_unit_price*service_count);
         sub_total = (sub_total-total_price)*1;
         $('.single-summery .sub-total').text('$'+sub_total);
         $('.append-extra-service li[service-id=' + service_id + ']').remove();   
+        $('.append-extra-service2 li[service-id2=' + service_id + ']').remove();   
         packageFee(sub_total); 
     }
 })
@@ -247,4 +244,70 @@ $('.overview-extra .check-input').click(function(){
         })
     }
     overviewConfirmation(available_date,available_schedule);
+
+    //Order Confirm
+    $('.ms-order-form').on('submit',function(e){
+        e.preventDefault();
+        if($('.confirm-payment .check-input').is(":checked")){           
+            if($('.terms-and-conditions .check-input').is(":checked")){
+                var my_location = $('#my_location').text();
+                var available_date = $('#available_date').text();
+                var available_schedule = $('#available_schedule').text();
+                var name = $('.booking-details #get_name').text();
+                var email = $('.booking-details #get_email').text();
+                var phone = $('.booking-details #get_phone').text();
+                var city = $('.booking-details #get_city').text();
+                var area = $('.booking-details #get_area').text();
+                var post_code = $('.booking-details #get_post_code').text();
+                var address = $('.booking-details #get_address').text();
+                var order_note = $('.booking-details #get_order_note').text();
+                //service overview
+                var bed_rooms = $('.confirm-service-overview-summery .bed-rooms-count').text();
+                var bed_rooms_total_price = $('.confirm-service-overview-summery .bed-rooms-total-price').text().replace("$", "");
+                var bed_room_unit_price = parseInt(bed_rooms_total_price/bed_rooms);
+                var bath_rooms = $('.confirm-service-overview-summery .bath-rooms-count').text();
+                var bath_rooms_total_price = $('.confirm-service-overview-summery .bath-rooms-total-price').text().replace("$", "");
+                var bath_room_unit_price = parseInt(bath_rooms_total_price/bath_rooms);
+                var confirm_sub_total = $('.confirm-service-overview-summery .sub-total').text().replace("$", "");
+                var confirm_vat_tax = $('.confirm-service-overview-summery .vat-tax').text().replace("$", "");
+                var confirm_final_total = $('.confirm-service-overview-summery .final-total').text().replace("$", "");
+                // console.log(my_location,available_date,available_schedule,name,email,phone,city,area,post_code,address,order_note,bed_rooms,bed_rooms_total_price,bed_room_unit_price,bath_rooms,bath_rooms_total_price,bath_room_unit_price,confirm_sub_total,confirm_vat_tax,confirm_final_total);
+                
+                //extra services
+
+                //payment
+                if($('.confirm-payment .cash').is(":checked")){
+                    var payment_method = 'Cash Payment';
+                    // alert(payment_method);
+                }
+                if($('.confirm-payment .paypal').is(":checked")){
+                    var payment_method = 'Paypal';
+                    // alert(payment_method);
+                } 
+
+                //ajax request
+                $.ajax({
+                    url:'/add-order',
+                    method:'post',
+                    data:{},
+                    success:function(data){ 
+                      console.log(data);
+                      if(data.status =='true'){
+                        // $('#enroll_success').html('<p class="text-success">Enroll success. We will contact you soon.</p>');
+                        // $('#enroll_form')['0'].reset();
+                        // $('#name_error').text('');
+                      }
+                    },error:function(data){
+                        // $('#name_error').text(data.responseJSON.errors.name);
+                     }
+                  });
+
+                
+            } else{
+                alert('Please Confirm Terms and Conditions');
+            }
+        }else{
+            alert('Please Confirm payment methods');
+        }
+    });
 });
