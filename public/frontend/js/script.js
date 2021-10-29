@@ -287,18 +287,25 @@ $('.overview-extra .check-input').click(function(){
 
                 //ajax request
                 $.ajax({
-                    url:'/add-order',
+                    url:'/place-order',
                     method:'post',
-                    data:{},
+                    data:{
+                        location:my_location,available_date:available_date,available_schedule:available_schedule,
+                        name:name,email:email,phone:phone,city:city,area:area,post_code:post_code,
+                        address:address,order_note:order_note,bed_rooms:bed_rooms,
+                        bed_rooms_total_price:bed_rooms_total_price,bed_room_unit_price:bed_room_unit_price,
+                        bath_rooms:bath_rooms,bath_rooms_total_price:bath_rooms_total_price,
+                        bath_room_unit_price:bath_room_unit_price,sub_total:confirm_sub_total,
+                        vat_tax:confirm_vat_tax,final_total:confirm_final_total,payment_method:payment_method
+                    },
                     success:function(data){ 
                       console.log(data);
                       if(data.status =='true'){
-                        // $('#enroll_success').html('<p class="text-success">Enroll success. We will contact you soon.</p>');
+                          alert('Your Order Successfully Placed. Thanks')
                         // $('#enroll_form')['0'].reset();
-                        // $('#name_error').text('');
                       }
                     },error:function(data){
-                        // $('#name_error').text(data.responseJSON.errors.name);
+                        alert('Please Fill All Information');
                      }
                   });
 
