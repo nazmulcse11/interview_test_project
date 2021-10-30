@@ -30,7 +30,7 @@
                         </li>
                     </ul>
                     <!-- Location -->
-                    <fieldset class="padding-top-50 padding-bottom-100">
+                    <fieldset class="padding-top-50 padding-bottom-100 confirm-location">
                         <div class="overview-list-all">
                             <div class="overview-location">
                                 <div class="single-location active margin-top-30">
@@ -63,7 +63,7 @@
                         <input type="button" name="next" class="next action-button" value="Next" />
                     </fieldset>
                     <!-- Service -->
-                    <fieldset class="padding-top-50 padding-bottom-100">
+                    <fieldset class="padding-top-50 padding-bottom-100 confirm-service">
                         <div class="row">
                             <div class="col-lg-8 margin-top-30">
                                 <div class="service-overview-wrapper padding-bottom-30">
@@ -199,7 +199,7 @@
                                             </div>
                                         </div>
                                         <div class="btn-wrapper">
-                                            <a href="javascript:void(0)" class="cmn-btn btn-appoinment btn-bg-1"> Continue </a>
+                                            {{-- <a href="javascript:void(0)" class="cmn-btn btn-appoinment btn-bg-1"> Continue </a> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -208,7 +208,7 @@
                         <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <!-- Date & Time -->
-                    <fieldset class="padding-top-50 padding-bottom-100">
+                    <fieldset class="padding-top-50 padding-bottom-100 confirm-date-time">
                         <div class="date-overview">
                             <div class="single-date-overview margin-top-30">
                                 <h4 class="date-time-title"> Available on <span class="month-year"></span></h4>
@@ -232,7 +232,7 @@
                         <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <!-- Information -->
-                    <fieldset class="padding-top-50 padding-bottom-100">
+                    <fieldset class="padding-top-50 padding-bottom-100 confirm-information">
                         <div class="Info-overview padding-top-30">
                             <h3 class="date-time-title"> Booking Information </h3>
                             <div class="single-info-overview margin-top-30">
@@ -284,13 +284,13 @@
                                 </div>
                             </div>
                             <div class="btn-wrapper margin-top-35">
-                                <a href="javascript:void(0)" class="cmn-btn btn-bg-1 booking-info-continue">Continue</a>
+                                {{-- <a href="javascript:void(0)" class="cmn-btn btn-bg-1">Continue</a> --}}
                             </div>
                         </div>
-                        <input type="button" name="next" class="next action-button booking-info-continue" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="next" class="next action-button" value="Next" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                     </fieldset>
                     <!-- Confirmation -->
-                    <fieldset class="padding-top-50 padding-bottom-100">
+                    <fieldset class="padding-top-50 padding-bottom-100 confirmation">
                         <div class="confirm-overview padding-top-30">
                             <div class="overview-author overview-author-border">
                                 <div class="overview-flex-author">
@@ -435,18 +435,18 @@
                                             </div>
                                         </div>
                                         <div class="btn-wrapper">
-                                            <a class="cmn-btn btn-appoinment btn-bg-1 pay-and-confirm-order"> Pay & Confirm Your Order </a>
+                                            <a href="javascript:void(0)" class="cmn-btn btn-appoinment btn-bg-1 pay-and-confirm-order"> Pay & Confirm Your Order </a>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <input type="submit" name="submit" class="action-button" value="Submit" />
+                        <input type="submit" name="submit" class="action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         {{-- <input type="button" name="submit" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> --}}
                     </fieldset>
                     <!-- Successful Complete -->
-                    <fieldset class="padding-top-80 padding-bottom-100">
+                    {{-- <fieldset class="padding-top-80 padding-bottom-100">
                         <div class="form-card successful-card">
                             <h2 class="title-step"> SUCCESS ! </h2>
                             <div class="succcess-icon">
@@ -457,7 +457,7 @@
                                 <a href="multistep_form.html" class="cmn-btn btn-bg-1"> Back To Home</a>
                             </div>
                         </div>
-                    </fieldset>
+                    </fieldset> --}}
                 </form>
             </div>
         </div>
