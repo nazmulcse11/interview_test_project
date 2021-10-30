@@ -18,6 +18,7 @@ Route::group(['prefix'=>'admin'],function(){
    Route::group(['middleware'=>'admin'],function(){
    //show all bookings order in dashboard
    Route::get('/dashboard',[App\Http\Controllers\Backend\DashboardController::class,'dashboard']);
+   Route::get('/orders',[App\Http\Controllers\Backend\DashboardController::class,'orders']);
    //extra service
    Route::get('extraservice',[ExtraserviceController::class,'extraservice']);
    Route::match(['get','post'],'add-edit-extraservice/{id?}',[App\Http\Controllers\Backend\ExtraserviceController::class,'addEditExtService']);

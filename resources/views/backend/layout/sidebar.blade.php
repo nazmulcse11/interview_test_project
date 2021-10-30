@@ -21,6 +21,22 @@
             </a>
           </li>
           <li class="nav-item">
+            <a href="{{ url('/admin/extraservice') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Extra Service
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ url('/admin/orders') }}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Orders
+              </p>
+            </a>
+          </li>
+          <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-bars"></i>
               <p>
