@@ -10,7 +10,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1 class="m-0">Dashhboard</h1>
+            <h1 class="m-0">Orders</h1>
           </div><!-- /.col -->
           <div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -56,15 +56,20 @@
                       <td>{{ $order->phone }}</td>
                       <td>
                         <span>Bed Rooms: {{ $order->bed_rooms }}</span><br>
-                        <span>Unit Price: {{ $order->bed_room_unit_price }}</span><br>
-                        <span>Total Price: {{ $order->bed_rooms_total_price }}</span><br>
+                        <span>Unit Price: ${{ $order->bed_room_unit_price }}</span><br>
+                        <span>Total Price: ${{ $order->bed_rooms_total_price }}</span><br>
                       </td>
                       <td>
                         <span>Bath Rooms: {{ $order->bath_rooms }}</span><br>
-                        <span>Unit Price: {{ $order->bath_room_unit_price }}</span><br>
-                        <span>Total Price: {{ $order->bath_rooms_total_price }}</span><br>
+                        <span>Unit Price: ${{ $order->bath_room_unit_price }}</span><br>
+                        <span>Total Price: ${{ $order->bath_rooms_total_price }}</span><br>
                       </td>
-                      <td>{{ $order->extra_service }}</td>
+                      <td><?php 
+                         $extra_service = explode(",", $order->extra_service); 
+                         foreach($extra_service as $service){
+                           echo $service.'<br>';
+                         }
+                        ?></td>
                       <td>{{ $order->sub_total }}</td>
                       <td>{{ $order->vat_tax }}</td>
                       <td>{{ $order->final_total }}</td>

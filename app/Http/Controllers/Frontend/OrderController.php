@@ -42,6 +42,7 @@ class OrderController extends Controller
             $order->bath_rooms =   $data['bath_rooms'];
             $order->bath_rooms_total_price =   $data['bath_rooms_total_price'];
             $order->bath_room_unit_price =   $data['bath_room_unit_price'];
+            $order->extra_service =   $data['extra_service'];
             $order->sub_total =   $data['sub_total'];
             $order->vat_tax =   $data['vat_tax'];
             $order->final_total =   $data['final_total'];

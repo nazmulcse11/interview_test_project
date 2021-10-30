@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    // Get Current Locatio---------------------------------------------------------
+    // Get Current Location---------------------------------------------------------
     var map;
     function initMap() {
     var mapCenter = new google.maps.LatLng(47.6145, -122.3418); //Google map Coordinates
@@ -395,6 +395,14 @@ $(document).ready(function(){
                 // console.log(my_location,available_date,available_schedule,name,email,phone,city,area,post_code,address,order_note,bed_rooms,bed_rooms_total_price,bed_room_unit_price,bath_rooms,bath_rooms_total_price,bath_room_unit_price,confirm_sub_total,confirm_vat_tax,confirm_final_total);
                 
                 //extra services
+                var extra_service_details='';
+                $('.append-extra-service2  li').each(function() {
+                    var extra_service_name = $(".rooms", this) .text()+': ';
+                    var extra_service_count = $(".service-count", this).append("&nbsp;&nbsp;&nbsp;&nbsp;").text();
+                    var extra_total_price = $(".total-price", this) .text()+',';
+                    extra_service_details += (extra_service_name + extra_service_count + extra_total_price);
+                    // alert(extra_service_details);
+                });
 
                 //payment
                 if($('.confirm-payment .cash').is(":checked")){
@@ -416,7 +424,7 @@ $(document).ready(function(){
                         address:address,order_note:order_note,bed_rooms:bed_rooms,
                         bed_rooms_total_price:bed_rooms_total_price,bed_room_unit_price:bed_room_unit_price,
                         bath_rooms:bath_rooms,bath_rooms_total_price:bath_rooms_total_price,
-                        bath_room_unit_price:bath_room_unit_price,sub_total:confirm_sub_total,
+                        bath_room_unit_price:bath_room_unit_price,extra_service:extra_service_details,sub_total:confirm_sub_total,
                         vat_tax:confirm_vat_tax,final_total:confirm_final_total,payment_method:payment_method
                     },
                     success:function(data){ 
@@ -436,8 +444,7 @@ $(document).ready(function(){
                                 </div>
                             </div>
                           </fieldset>
-                          `)
-                        // $('#enroll_form')['0'].reset();
+                          `);
                       }
                     },error:function(data){
                         alert('Please Fill All Information');
