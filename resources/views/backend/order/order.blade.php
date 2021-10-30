@@ -65,7 +65,8 @@
                         <span>Total Price: ${{ $order->bath_rooms_total_price }}</span><br>
                       </td>
                       <td><?php 
-                         $extra_service = explode(",", $order->extra_service); 
+                        //  $extra_service = explode(",", $order->extra_service); 
+                         $extra_service = explode(',', rtrim($order->extra_service, ','));
                          foreach($extra_service as $service){
                            echo $service.'<br>';
                          }
