@@ -48,7 +48,10 @@ class OrderController extends Controller
             $order->final_total =   $data['final_total'];
             $order->payment_method =   $data['payment_method'];
             $order->save();
-            return response()->json(['status'=>'true',]);
+            return response()->json([
+                'status'=>'true',
+                'payment_method'=>$order->payment_method,
+            ]);
         }
     }
 }

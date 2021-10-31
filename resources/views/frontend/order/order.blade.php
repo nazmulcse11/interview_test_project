@@ -424,7 +424,7 @@
                                                 <div class="single-checkbox">
                                                     <div class="checkbox-inlines">
                                                         <input class="check-input paypal" type="checkbox" id="check2">
-                                                        <label class="checkbox-label" for="check2"> <img src="{{ asset('frontend/assets/img/service/payment.png') }}" alt=""> </label>
+                                                        <label class="checkbox-label" for="check2"> Paypal</label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -435,14 +435,14 @@
                                             </div>
                                         </div>
                                         <div class="btn-wrapper">
-                                            <a href="javascript:void(0)" class="cmn-btn btn-appoinment btn-bg-1 pay-and-confirm-order"> Pay & Confirm Your Order </a>
+                                            <input type="submit" name="submit" class="cmn-btn btn-appoinment btn-bg-1 pay-and-confirm-order" value="Pay & Confirm Your Order" /> 
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                         </div>
-                        <input type="submit" name="submit" class="action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
+                        <input type="button" name="previous" class="previous action-button-previous" value="Previous" />
                         {{-- <input type="button" name="submit" class="next action-button" value="Submit" /> <input type="button" name="previous" class="previous action-button-previous" value="Previous" /> --}}
                     </fieldset>
                     <!-- Successful Complete -->
@@ -459,6 +459,9 @@
                         </div>
                     </fieldset> --}}
                 </form>
+                <div class="btn-wrapper text-center margin-top-35 margin-bottom-80 paypal">
+                    {{-- add paypal link  --}}
+                </div>
             </div>
         </div>
     </div>

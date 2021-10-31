@@ -428,23 +428,22 @@ $(document).ready(function(){
                         vat_tax:confirm_vat_tax,final_total:confirm_final_total,payment_method:payment_method
                     },
                     success:function(data){ 
-                      console.log(data);
+                    //   console.log(data);
                       if(data.status =='true'){
                         //   alert('Your Order Successfully Placed. Thanks');
                           $('.ms-order-form').html(`
-                          <fieldset class="padding-top-80 padding-bottom-100">
+                          <fieldset class="padding-bottom-20">
                             <div class="form-card successful-card">
                                 <h2 class="title-step"> SUCCESS ! </h2>
                                 <div class="succcess-icon">
                                     <i class="las la-check"></i>
                                 </div>
                                 <h5 class="purple-text text-center">Your Oeder Successfully Compleated</h5>
-                                <div class="btn-wrapper text-center margin-top-35">
-                                    <a href="javascript:void(0)" class="cmn-btn btn-bg-1">Thanks To Choose Us</a>
-                                </div>
                             </div>
                           </fieldset>
                           `);
+                      }
+                      if(data.status =='paypal'){$('.paypal').html('<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post"><input type="hidden" name="cmd" value="_cart"><input type="hidden" name="business" value="sb-jop0f4735180@business.example.com"><input type="image" name="submit" src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif" alt="PayPal - The safer, easier way to pay online"></form>');
                       }
                     },error:function(data){
                         alert('Please Fill All Information');
